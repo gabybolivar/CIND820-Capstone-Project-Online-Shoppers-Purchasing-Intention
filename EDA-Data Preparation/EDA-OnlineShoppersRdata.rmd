@@ -1,0 +1,223 @@
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(scales)  
+library(ggcorrplot)
+```
+
+```{r}
+#Import dataset into R
+thedata <- read.csv("online_shoppers_intention.csv")
+```
+
+
+```{r}
+head(thedata)
+```
+
+
+```{r}
+#Stucture of dataset
+str(thedata)
+```
+
+
+
+```{r}
+#Sumamry of dataset
+summary(thedata)
+```
+
+```{r}
+#Check to see if dataset has NAs
+sum(is.na(thedata))
+sapply(thedata, function(x) sum(is.na(x)))
+```
+
+```{r}
+#Dimenstion of the dataset
+dim(thedata)
+```
+
+
+
+```{r}
+#Correlation  betweem numerical attributes
+variablesnum <- c("Administrative", "Administrative_Duration", "Informational", "Informational_Duration",	"ProductRelated",	"ProductRelated_Duration",	"BounceRates",	"ExitRates",	"PageValues",	"SpecialDay")
+data2 <- (thedata[variablesnum])
+cor(data2)
+
+```
+
+
+
+
+
+```{r}
+#Correlation matrix betweem numerical attributes
+variables_correlations <- cor(data2) 
+ggcorrplot(variables_correlations,type="lower", lab = TRUE, lab_size = 2) + 
+  ggtitle("Correlation between Numerical attributes")
+```
+
+```{r}
+#Boxplots
+
+#Boxplot for all numerical attributes
+
+outliersnum <-boxplot(thedata[1:9], las = 2, xlab ="") 
+
+```
+
+
+```{r}
+#Boxplot for numerical attributes
+par(mfcol=c(2,2))
+
+outliersProductRelated_Duration <- boxplot(thedata$ProductRelated_Duration, horizontal = TRUE, outline = TRUE, main = "Boxplot for ProductRelated_Duration ")
+outliersAdministrative_Duration <- boxplot(thedata$Administrative_Duration, horizontal = TRUE, outline = TRUE, main = "Boxplot for Administrative_Duration")
+
+outliersInformational_Duration <- boxplot(thedata$Informational_Duration, horizontal = TRUE, outline = TRUE, main = "Boxplot for Informational_Duration ")
+
+outliersProductRelated <- boxplot(thedata$ProductRelated, horizontal = TRUE, outline = TRUE, main = "Boxplot for ProductRelated ")
+
+outliersPageValues <- boxplot(thedata$PageValues, horizontal = TRUE, outline = TRUE, main = "Boxplot for PageValues ")
+
+temp <- c("Administrative","Informational","BounceRates","ExitRates","SpecialDay")
+tempdata<-thedata[temp]
+outlierstemp <-boxplot(tempdata, las = 2, xlab ="")
+
+#out <- boxplot.stats(thedata$ProductRelated_Duration)$out
+#out_ind <- which(thedata$ProductRelated_Duration %in% c(out))
+#thedata[out_ind, ]
+
+
+```
+```{r}
+# As we can se above, there are numerous outliers presented in our data, if we remove them there would be a loss of information, so we will move foreward without removing the outliers
+```
+
+
+```{r}
+#plots for numerical attributes
+library(ggplot2)
+
+par(mfcol=c(2,2))
+
+
+plot(thedata$Administrative,main="Plot of Administrative" )
+plot(thedata$Administrative_Duration,main="Plot of Administrative_Duration")
+plot(thedata$Informational,main="Plot of Informational")
+plot(thedata$Informational_Duration,main="Plot of Informational_Duration")
+plot(thedata$BounceRates,main="Plot of BounceRates")
+plot(thedata$ExitRates,main="Plot of ExitRates")
+plot(thedata$PageValues,main="Plot of PageValues")
+plot(thedata$SpecialDay,main="Plot of SpecialDay")
+plot(thedata$ProductRelated,main="Plot of ProductRelated")
+plot(thedata$ProductRelated_Duration, main="Plot of ProductRelated_Duration")
+```
+```{r}
+#Histograms for Numerical attributes
+par(mfcol=c(2,2))
+
+
+hist(thedata$Administrative,main="Histogram of Administrative" )
+hist(thedata$Administrative_Duration,main="Histogram of Administrative_Duration")
+hist(thedata$Informational,main="Histogram of Informational")
+hist(thedata$Informational_Duration,main="Histogram of Informational_Duration")
+hist(thedata$BounceRates,main="Histogram of BounceRates")
+hist(thedata$ExitRates,main="Histogram of ExitRates")
+hist(thedata$PageValues,main="Histogram of PageValues")
+hist(thedata$SpecialDay,main="Histogram of SpecialDay")
+hist(thedata$ProductRelated,main="Histogram of ProductRelated")
+hist(thedata$ProductRelated_Duration, main="Histogram of ProductRelated_Duration")
+```
+
+
+```{r}
+#Plots For categorical attributes
+
+
+par(mfcol=c(3,3))
+
+plot(thedata$Revenue,main="Revenue")
+plot(thedata$Weekend,main="Weekend")
+plot(thedata$VisitorType,main="VisitorType")
+plot(thedata$TrafficType,main="TrafficType")
+plot(thedata$Browser,main="Browser")
+plot(thedata$Region,main="Region")
+```
+
+
+
+```{r}
+#Count values for the Revenue attribute
+count(thedata, Revenue, name = 'Class.count')
+```
+
+
+```{r}
+
+#Pie chart to show Class Revenue
+
+par(mfrow=c(1,2))
+slices <- c(10422, 1908)
+lbls <-c("False", "True")
+pct <- round(slices/sum(slices)*100)
+lbls <- paste(lbls, pct)
+lbls <- paste(lbls,"%",sep="")
+pie(slices, labels = lbls, main = "Class Revenue")
+
+#This chart shows how the data is unbalanced
+```
+
+
+
+```{r}
+
+# Standard deviation for numerical attributes:
+
+sd_administrative<- sd(thedata$Administrative)
+sd_Administrative_Duration<- sd(thedata$Administrative_Duration)
+sd_Informational<- sd(thedata$Informational)
+sd_Informational_Duration<- sd(thedata$Informational_Duration)
+sd_ProductRelated<- sd(thedata$ProductRelated)
+sd_ProductRelated_Duration<- sd(thedata$ProductRelated_Duration)
+sd_BounceRates<- sd(thedata$BounceRates)
+sd_ExitRates<- sd(thedata$ExitRates)
+sd_PageValues<- sd(thedata$PageValues)
+sd_SpecialDay<- sd(thedata$SpecialDay)
+sd_administrative
+sd_Administrative_Duration
+sd_Informational
+sd_Informational_Duration
+sd_ProductRelated
+sd_ProductRelated_Duration
+sd_BounceRates
+sd_ExitRates
+sd_PageValues
+sd_SpecialDay
+```
+
+
+
+
+```{r}
+#Correlation between Revenue and Region:
+#we cannot reject the Nypotesis the results are not statiscally significant
+
+chisq.test(thedata$Revenue, thedata$Region)
+```
+
+```{r}
+#library(readr)
+#write_csv(thedata, path="C:/Users/gabri/Desktop/dataset_1.csv")
+```
+
+
+
+          
+
+              
+
