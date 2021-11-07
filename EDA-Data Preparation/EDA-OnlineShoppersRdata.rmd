@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -8,7 +13,7 @@ library(ggcorrplot)
 
 ```{r}
 #Import dataset into R
-thedata <- read.csv("online_shoppers_intention.csv")
+thedata <- read.csv("C:/Users/gabri/Documents/online_shoppers_intention.csv")
 ```
 
 
