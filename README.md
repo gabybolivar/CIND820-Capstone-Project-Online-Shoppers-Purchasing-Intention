@@ -2,7 +2,8 @@
 **Online Shoppers Purchase Intention**
 
 The dataset that will be used for this paper is the “Online Shoppers Purchasing Intention” dataset, it was obtained through UC Irvine’s Machine Learning Repository:
-•	Dataset:https://archive.ics.uci.edu/ml/datasets/Online+Shoppers+Purchasing+Intention+Dataset 
+
+Dataset:https://archive.ics.uci.edu/ml/datasets/Online+Shoppers+Purchasing+Intention+Dataset 
 
 This project aims to research the subject of Online Shoppers Purchasing Intention by building a predictive model using Classification algorithms, which shall predict and analyze a customer’s behaviour and intention of how likely they are to complete a purchase on an E-commerce Website after its visit.
 
