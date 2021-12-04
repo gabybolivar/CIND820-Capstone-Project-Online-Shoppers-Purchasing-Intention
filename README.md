@@ -9,4 +9,6 @@ This project aims to research the subject of Online Shoppers Purchasing Intentio
 
 The dataset consists of feature vectors belonging to 12,330 sessions (rows). The dataset was formed so that each session would belong to a different user in a 1-year period to avoid any tendency to a specific campaign, special day, user profile, or period. 
 
+This project is conformed by Classification models : Random Forest, XGBoost & Naive Bayes with the imbalanced dataset and a resample dataset.
+
 
