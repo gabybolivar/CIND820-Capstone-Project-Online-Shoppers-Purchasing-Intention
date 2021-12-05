@@ -9,6 +9,6 @@ This project aimed to research the subject of Online Shoppers Purchasing Intenti
 
 The dataset consists of feature vectors belonging to 12,330 sessions (rows). 
 
-This project is conformed by Classification models: Random Forest, XGBoost & Naive Bayes with the imbalanced dataset and a resample dataset.
+This project is conformed by Classification models: Random Forest, XGBoost & Naive Bayes with the imbalanced dataset and a resample version of the dataset.
 
 
